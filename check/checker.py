@@ -7,3 +7,7 @@ class Checker:
 
     def _check(self) -> int:
         return requests.get(self.url).status_code
+
+    @property
+    def status_code(self):
+        return self._check()
