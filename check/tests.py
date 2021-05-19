@@ -7,8 +7,8 @@ from check.models import Website, Online
 class CheckerTest(TestCase):
     def test_check(self):
         url = "https://google.com"
-        status_code = Checker(url=url)._check()
-        self.assertEqual(status_code, 200)
+        c = Checker(url=url)
+        self.assertEqual(c.status_code, 200)
 
 
 class ModelsTest(TestCase):
