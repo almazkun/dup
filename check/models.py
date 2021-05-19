@@ -6,18 +6,16 @@ from check.checker import Checker
 class Online(models.Model):
     UP = 0
     DOWN = 1
-    
-    STATUSES = (
-        (UP, "Up"),
-        (DOWN, "Down")
-    )
+
+    STATUSES = ((UP, "Up"), (DOWN, "Down"))
 
     status = models.PositiveSmallIntegerField(choices=STATUSES, default=DOWN)
-    
+
     created_on = models.DateTimeField(verbose_name="Created", auto_now_add=True)
 
     class Meta:
         ordering = ["-created_on"]
+
 
 class Website(models.Model):
     url = models.URLField()
@@ -36,4 +34,3 @@ class Website(models.Model):
             self.statuses.create(status=Online.UP)
         else:
             self.statuses.create(status=Online.DOWN)
-        

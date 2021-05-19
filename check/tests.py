@@ -10,6 +10,7 @@ class CheckerTest(TestCase):
         status_code = Checker(url=url)._check()
         self.assertEqual(status_code, 200)
 
+
 class ModelsTest(TestCase):
     def test_model(self):
         url = "https://facebbok.com"
