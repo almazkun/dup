@@ -10,4 +10,7 @@ class Checker:
 
     @property
     def status_code(self):
-        return self._check()
+        try:
+            return self._check()
+        except requests.exceptions.ConnectionError:
+            return 404
