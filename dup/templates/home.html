@@ -2,11 +2,29 @@
 
 
 {% block content %}
-		<div class="container mx-auto">
-			<section class="flex items-center justify-center h-screen">
-                <div>
-                    <h1>It works</hi>
-                </div>
-			</section>
-		</div>
+    <div class="container mx-auto">
+      <section class="flex items-center justify-center h-screen">
+
+        <table class="table-auto">
+          <thead>
+            <tr>
+              <th>URL</th>
+              <th>Online</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for website in object_list %}
+              <tr>
+                <td>{{website.url}}</td>
+                <td>{{website.url.statuses.all}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+        <div>
+          {{ form.as_ul }}
+          <input type="submit" value="OK">
+        </div>
+    </div>
 {% endblock content %}
