@@ -1,20 +1,18 @@
-from django.http import HttpResponse
-from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 from dup.models import Website
-from dup.forms import WebsiteForm
 
 # Create your views here.
-class HomeView(ListView):
+class HomeView(CreateView):
     model = Website
     template_name = "home.html"
-    paginate_by = 100
+    fields = [
+        "url",
+    ]
+    success_url = reverse_lazy("home")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form"] = WebsiteForm()
+        context["websites"] = Website.objects.all().order_by("-created_on")
         return context
-
-
-class WebsiteCreateView(CreateView):
-    model = Website

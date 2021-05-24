@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 from dup.models import Website, Online
 
@@ -19,3 +19,17 @@ class ModelsTest(TestCase):
 
         self.assertTrue(website.statuses.first())
         self.assertTrue(Online.objects.all())
+
+
+class TestViews(TestCase):
+    def setUp(self):
+        self.url = "https://facebbok.com"
+        self.c = Client()
+        self.c.post("/", data={"url": self.url})
+
+    def test_get(self):
+        res = self.c.get("/")
+
+        self.assertTrue(res.status_code, 200)
+        self.assertTrue(Website.objects.get(url=self.url))
+        self.assertTrue("websites" in res.context)

@@ -16,7 +16,7 @@ coverage run --source='.' --omit='*/migrations/*.py' manage.py test
 coverage html
 coverage report
 ```
-`TOTAL                 123     11    91%`
+`TOTAL                 142     11    92%`
 
 # Celery Setup
 setup guide: https://github.com/almazkun/django_celery

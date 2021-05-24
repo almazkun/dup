@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <div class="container mx-auto">
+    <div class="container mx-md">
       <section class="flex items-center justify-center h-screen">
 
         <table class="table-auto">
@@ -13,7 +13,13 @@
             </tr>
           </thead>
           <tbody>
-            {% for website in object_list %}
+              <tr>
+                <form method="post">{% csrf_token %}
+                  <td>{{ form.url }}</td>
+                  <td><input type="submit" value="OK"></td>
+                </form>
+              </tr>
+            {% for website in websites %}
               <tr>
                 <td>{{website.url}}</td>
                 <td>{{website.url.statuses.all}}</td>
@@ -22,9 +28,5 @@
           </tbody>
         </table>
       </section>
-        <div>
-          {{ form.as_ul }}
-          <input type="submit" value="OK">
-        </div>
     </div>
 {% endblock content %}
