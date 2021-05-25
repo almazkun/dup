@@ -1,32 +1,121 @@
 {% extends 'base.html' %}
 
 
-{% block content %}
-    <div class="container mx-md">
-      <section class="flex items-center justify-center h-screen">
 
-        <table class="table-auto">
-          <thead>
-            <tr>
-              <th>URL</th>
-              <th>Online</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <form method="post">{% csrf_token %}
-                  <td>{{ form.url }}</td>
-                  <td><input type="submit" value="OK"></td>
-                </form>
-              </tr>
-            {% for website in websites %}
-              <tr>
-                <td>{{website.url}}</td>
-                <td>{{website.url.statuses.all}}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </section>
+{% block content %}
+
+<div class="bg-red-500 w-full ">
+
+  <header>
+    <div class="flex justify-between items-center py-4 px-6">
+      <div>
+        <h1 class="font-bold text-white text-3xl">D<span class="text-blue-400">UP</span></h1>
+      </div>
     </div>
+  </header>
+
+  <section class="h-full bg-yellow-300">
+    <div class="grid grid-cols-12 gap-0">
+      <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-6 xxl:col-span-6 bg-red-500 h-full px-16 py-6">
+        <div class="w-full">
+          <h1 class="text-7xl sm:text-8xl lg:text-8xl xl:text-9xl text-white font-bold my-8">
+            Django,<br>
+            is my website
+            <span class="text-blue-400">
+              UP?
+            </span>
+          </h1>
+          <p class="text-xl text-white font-semibold ">
+            Checks your website every hour.<br>
+            Notifies you if it is down.
+          </p>
+        </div>
+      </div>
+      <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-6 xxl:col-span-6 bg-red-500 px-16 py-6">
+        <div class="">
+          <div class="inline-block min-w-full shadow rounded-lg border-2">
+
+            <table class="min-w-full">
+              <thead>
+                <tr>
+                  <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-white font-semibold  uppercase">
+                    URL
+                  </th>
+                  <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-white font-semibold uppercase">
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <form method="post">{% csrf_token %}
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                      <div class="flex items-center">
+                        {{ form.url }}
+                      </div>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                      <span class="relative inline-block px-3 py-1 text-green-900 leading-tight">
+                        <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                        <span class="relative"><input type="submit" value="OK"></span>
+                      </span>
+                    </td>
+                  </form>
+                </tr>
+                {% for website in websites %}
+                <tr>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    <div class="flex items-center">
+                      <p class="whitespace-no-wrap text-white">
+                        {{website.url}}
+                      </p>
+                    </div>
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                      <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                      <span class="relative">{{website.url.statuses.all}}</span>
+                    </span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="h-full bg-gray-800">
+  <div class="py-6 px-16 flex justify-between">
+    <div>
+      <h1 class="font-bold text-white text-3xl">D<span class="text-blue-400">UP</span></h1>
+    </div>
+      <div class="flex space-x-10">
+        <a href="#" class="text-white font-semibold text-lg hover:text-yellow-400">Source Code</a>
+        <a href="#" class="text-white font-semibold text-lg hover:text-yellow-400">About Me</a>
+      </div>
+  </div>
+
+  <div class="border-t-2 mx-10 border-gray-500"></div>
+
+  <div class="py-4 py-6 px-16 flex justify-between">
+      <div>
+        <h1 class="font-semibold text-white text-sm">Copyrigth @ <a href="https://akun.dev" target="_blank">akun.dev</a> {% now "Y" %}</h1>
+      </div>
+
+      <div>
+          <a href="#" class="flex space-x-2 text-white hover:text-yellow-400">
+              <p class="font-semibold  text-sm">GO TOP</p>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6  -mt-1" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7l4-4m0 0l4 4m-4-4v18" />
+              </svg>
+          </a>
+      </div>
+  </div>
+</section>
+</div>
 {% endblock content %}

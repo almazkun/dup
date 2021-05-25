@@ -14,5 +14,5 @@ class HomeView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["websites"] = Website.objects.all().order_by("-created_on")
+        context["websites"] = Website.objects.all().order_by("-updated_on")
         return context
