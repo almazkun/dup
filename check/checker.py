@@ -1,4 +1,8 @@
 import requests
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class Checker:
@@ -6,6 +10,7 @@ class Checker:
         self.url = url
 
     def _check(self) -> int:
+
         return requests.get(self.url).status_code
 
     @property
